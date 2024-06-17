@@ -1,0 +1,132 @@
+
+:root {
+    /* Colors */
+    --primary-color: #1C202E;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.cards-section {
+    max-width: 1200px;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.cards-section h1 {
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-family: "Ubuntu", sans-serif;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 4.8rem; 
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    width: calc(33.333% - 2rem);
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card img .imgPrincipal{
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+}
+
+.card h2 {
+    font-size: 2.4rem;
+    margin: 1rem;
+}
+
+.card p {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    flex-grow: 1;
+    margin: 1rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    color: #fff;
+    bottom: 1rem;
+    width: 80%;
+    align-self: center;
+}
+
+.card-footer .price {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #757A88;
+}
+
+.price {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.card img .logo {
+    width: 2rem; 
+    height: auto;
+    bottom: 1rem;
+    right: 1rem;
+
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 50%; 
+    }
+
+    .cards-section h1 {
+        font-size: 3rem; 
+        text-align: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
