@@ -1,0 +1,73 @@
+:root {
+    /* Colors */
+    --primary-color: #FCFCFC;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.main-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 30px;
+    background-color: var(--primary-color);
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.title p {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.link {
+    color: red;
+    text-decoration: underline;
+}
+
+input {
+    border: none;
+    border-bottom: #5A5F70 1px solid;
+    outline: none;
+}
+
+.email{
+    border: none;
+    border-bottom: red 1px solid;
+    outline: none;
+}
+div {
+    padding: 10px;
+    align-self: center;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+label {
+    font-weight: 600;
+}
+
+button {
+    background-color: red;
+    color: var(--primary-color);
+    width: 80%;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    align-self: center;
+}
