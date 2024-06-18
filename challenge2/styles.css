@@ -14,26 +14,59 @@ html {
     font-family: "Ubuntu", sans-serif;
 }
 
+header p {
+    font-size: 1.8rem;
+}
+
 .main-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding: 30px;
+    padding: 5px;
+    padding-top: 20px;
+    padding-bottom: 25%;
     background-color: var(--primary-color);
+    flex-direction: column;
 }
 
 h1 {
     font-size: 3rem;
     font-weight: 500;
+    padding-bottom: 3rem;
 }
 
 .title p {
     font-family: "Manrope", sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
+    padding-bottom: 10px;
 }
+.title a {
+    padding-bottom: 2rem;
+}
+.info {
+    display: flex;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #5A5F70;
+}
 .link {
     color: red;
     text-decoration: underline;
@@ -41,14 +74,20 @@ h1 {
 
 input {
     border: none;
-    border-bottom: #5A5F70 1px solid;
     outline: none;
 }
 
-.email{
-    border: none;
-    border-bottom: red 1px solid;
-    outline: none;
+.input-wrapper-email{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid red;
+}
+.input-wrapper img {
+    padding-right: 10px;
+}
+.input-wrapper-email img {
+    padding-right: 10px;
 }
 div {
     padding: 10px;
@@ -67,6 +106,7 @@ button {
     color: var(--primary-color);
     width: 80%;
     border: none;
+    margin-top: 20px;
     padding: 10px 20px;
     border-radius: 20px;
     align-self: center;
