@@ -12,56 +12,59 @@
 </head>
 
 <body>
-    <header>
-        <p>A Logo</p>
-    </header>
+
 
     <main>
         <section class="main-section">
-            <div class="title">
-                <h1>Sign Up</h1>
-                <p>If you already have an account register</p>
-                <p>You can <a class="link">Login here!</a></p>
+            <div class="image-container">
+                <img src="./assets/imgs/principal.svg" alt="Example Image">
             </div>
+            <div class="form-container">
+                <div class="title">
+                    <h1>Sign Up</h1>
+                    <p>If you already have an account register</p>
+                    <p>You can <a class="link">Login here!</a></p>
+                </div>
 
-            <div class="info">
-                <form>
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <div class="input-wrapper-email">
-                            <img src="./assets/icons/mail.svg" alt="email">
-                            <input class="email" type="email" id="email" name="email" placeholder="Enter you email address" required>
+                <div class="info">
+                    <form>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <div class="input-wrapper-email">
+                                <img src="./assets/icons/mail.svg" alt="email">
+                                <input class="email" type="email" id="email" name="email" placeholder="Enter you email address" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label for="username">Username</label>
-                        <div class="input-wrapper">
-                            <img src="./assets/icons/user.svg" alt="user">
-                            <input type="text" id="username" name="username" placeholder="Enter your User name" required>
+                        <div class="input-group">
+                            <label for="username">Username</label>
+                            <div class="input-wrapper">
+                                <img src="./assets/icons/user.svg" alt="user">
+                                <input type="text" id="username" name="username" placeholder="Enter your User name" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label for="password">Password</label>
-                        <div class="input-wrapper">
-                            <img src="./assets/icons/lock.svg" alt="lock">
-                            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                            <img src="./assets/icons/eye.svg" alt="eye">
+                        <div class="input-group">
+                            <label for="password">Password</label>
+                            <div class="input-wrapper">
+                                <img src="./assets/icons/lock.svg" alt="lock">
+                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                                <img src="./assets/icons/eye.svg" alt="eye" class="eyeImage">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="input-group">
-                        <label for="password">Confirm Password</label>
-                        <div class="input-wrapper">
-                            <img src="./assets/icons/lock.svg" alt="lock">
-                            <input type="password" id="password" name="password" placeholder="Confirm your password" required>
-                            <img src="./assets/icons/eye.svg" alt="eye">
+                        <div class="input-group">
+                            <label for="password">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <img src="./assets/icons/lock.svg" alt="lock">
+                                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm your password" required>
+                                <img src="./assets/icons/eye.svg" alt="eye" class="eyeImage">
+                            </div>
                         </div>
-                    </div>
 
-                    <button type="submit">Register</button>
-                </form>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>

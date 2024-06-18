@@ -1,6 +1,7 @@
 :root {
     /* Colors */
     --primary-color: #FCFCFC;
+    --complimentary-red: #EF4444;
 }
 
 * {
@@ -22,11 +23,15 @@ header p {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
     padding-top: 20px;
     padding-bottom: 25%;
     background-color: var(--primary-color);
     flex-direction: column;
+}
+
+.form-container {
+    width: 100%;
+    padding: 26px 8px 20px 20px;
 }
 
 h1 {
@@ -41,19 +46,26 @@ h1 {
     font-weight: 400;
     padding-bottom: 10px;
 }
+
 .title a {
     padding-bottom: 2rem;
 }
+
 .info {
     display: flex;
 }
+
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-
 }
+
+.image-container img {
+    display: none;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -61,34 +73,47 @@ form {
     width: 100%;
     padding-bottom: 20px;
 }
+
 .input-wrapper {
     display: flex;
     align-items: center;
     width: 100%;
     border-bottom: 1px solid #5A5F70;
+    position: relative; /* Add this to position the eye icon */
 }
+
 .link {
-    color: red;
+    color: var(--complimentary-red);
     text-decoration: underline;
 }
 
 input {
     border: none;
     outline: none;
+    flex-grow: 1; /* Allow input to take up available space */
 }
 
-.input-wrapper-email{
+.eyeImage {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+}
+
+.input-wrapper-email {
     display: flex;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid var(--complimentary-red);
 }
+
 .input-wrapper img {
     padding-right: 10px;
 }
+
 .input-wrapper-email img {
     padding-right: 10px;
 }
+
 div {
     padding: 10px;
     align-self: center;
@@ -102,7 +127,7 @@ label {
 }
 
 button {
-    background-color: red;
+    background-color: var(--complimentary-red);
     color: var(--primary-color);
     width: 80%;
     border: none;
@@ -110,4 +135,30 @@ button {
     padding: 10px 20px;
     border-radius: 20px;
     align-self: center;
+}
+
+@media (min-width: 768px) {
+    .main-section {
+        flex-direction: row;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    
+    .image-container {
+        display: block;
+        width: 60%; 
+        text-align: center;
+        padding: 0px;
+    }
+    
+    .image-container img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .form-container {
+        width: 40%; 
+        padding: 50px;
+    }
 }
