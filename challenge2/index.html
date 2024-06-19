@@ -1,74 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorign>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorign />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope&family=Ubuntu:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-<body>
-
-
+  <body>
     <main>
-        <section class="main-section">
-            <div class="image-container">
-                <img src="./assets/imgs/principal.svg" alt="Example Image">
-            </div>
-            <div class="form-container">
-                <div class="title">
-                    <h1>Sign Up</h1>
-                    <p>If you already have an account register</p>
-                    <p>You can <a class="link">Login here!</a></p>
+      <section class="main-section">
+        <div class="image-container" id="imageContainer">
+          <img src="./assets/imgs/principal.svg" alt="Example Image" />
+        </div>
+        <div class="form-container" id="formContainer">
+          <div class="title">
+            <h1>Sign Up</h1>
+            <p>If you already have an account register</p>
+            <p>You can <a class="link">Login here!</a></p>
+          </div>
+
+          <div class="info">
+            <form id="signupForm">
+              <div class="input-group">
+                <label for="email" id="emailLabel">Email</label>
+                <div class="input-wrapper" id="emailWrapper">
+                  <img src="./assets/icons/mail.svg" alt="email" />
+                  <input
+                    class="email"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                  />
                 </div>
+                <span class="error-message" id="emailError"></span>
+              </div>
 
-                <div class="info">
-                    <form>
-                        <div class="input-group">
-                            <label for="email">Email</label>
-                            <div class="input-wrapper-email">
-                                <img src="./assets/icons/mail.svg" alt="email">
-                                <input class="email" type="email" id="email" name="email" placeholder="Enter you email address" required>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="username">Username</label>
-                            <div class="input-wrapper">
-                                <img src="./assets/icons/user.svg" alt="user">
-                                <input type="text" id="username" name="username" placeholder="Enter your User name" required>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="password">Password</label>
-                            <div class="input-wrapper">
-                                <img src="./assets/icons/lock.svg" alt="lock">
-                                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                                <img src="./assets/icons/eye.svg" alt="eye" class="eyeImage">
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="password">Confirm Password</label>
-                            <div class="input-wrapper">
-                                <img src="./assets/icons/lock.svg" alt="lock">
-                                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm your password" required>
-                                <img src="./assets/icons/eye.svg" alt="eye" class="eyeImage">
-                            </div>
-                        </div>
-
-                        <button type="submit">Register</button>
-                    </form>
+              <div class="input-group">
+                <label for="username" id="userLabel">Username</label>
+                <div class="input-wrapper" id="userWrapper">
+                  <img src="./assets/icons/user.svg" alt="user" />
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your User name"
+                    required
+                  />
                 </div>
-            </div>
-        </section>
+                <span class="error-message" id="usernameError"></span>
+              </div>
+
+              <div class="input-group">
+                <label for="password" id="passwordLabel">Password</label>
+                <div class="input-wrapper" id="passwordWrapper">
+                  <img src="./assets/icons/lock.svg" alt="lock" />
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                  <img
+                    src="./assets/icons/eye.svg"
+                    alt="eye"
+                    class="eyeImage"
+                  />
+                </div>
+                <span class="error-message" id="passwordError"></span>
+              </div>
+
+              <div class="input-group">
+                <label for="passwordConfirm" id="confirmLabel"
+                  >Confirm Password</label
+                >
+                <div class="input-wrapper" id="confirmWrapper">
+                  <img src="./assets/icons/lock.svg" alt="lock" />
+                  <input
+                    type="password"
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                  <img
+                    src="./assets/icons/eye.svg"
+                    alt="eye"
+                    class="eyeImage"
+                  />
+                </div>
+                <span class="error-message" id="passwordConfirmError"></span>
+              </div>
+
+              <button type="submit">Register</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
-</body>
+    <script>
+      document.querySelectorAll(".eyeImage").forEach((eyeIcon) => {
+        eyeIcon.addEventListener("click", function () {
+          const passwordInput = this.previousElementSibling;
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+          } else {
+            passwordInput.type = "password";
+          }
+        });
+      });
 
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          validateForm();
+        });
+
+      function validateForm() {
+        const email = document.getElementById("email").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const passwordConfirm =
+          document.getElementById("passwordConfirm").value;
+
+        let isValid = true;
+
+        resetErrors();
+
+        // Email validation
+        const emailRegex =
+          /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|lightit\.io)$/;
+        if (!emailRegex.test(email)) {
+          document.getElementById("emailError").textContent =
+            "Invalid email address. Only @gmail.com, @hotmail.com, and @lightit.io are allowed.";
+          turnRed("email");
+          isValid = false;
+        }
+
+        // Username validation
+        const usernameRegex = /^[a-z]+$/;
+        if (!usernameRegex.test(username)) {
+          document.getElementById("usernameError").textContent =
+            "Invalid username. Only lowercase letters are allowed, without spaces and special characters.";
+          turnRed("user");
+          isValid = false;
+        }
+
+        // Password validation
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          document.getElementById("passwordError").textContent =
+            "Password must be at least 8 characters long and include uppercase, lowercase, and special characters.";
+          turnRed("password");
+          isValid = false;
+        }
+
+        // Confirm password validation
+        if (password !== passwordConfirm) {
+          document.getElementById("passwordConfirmError").textContent =
+            "Passwords do not match.";
+          turnRed("confirm");
+          isValid = false;
+        }
+
+        if (isValid) {
+          showLoadingState(username);
+        }
+      }
+
+      function showLoadingState(username) {
+        const formContainer = document.getElementById("formContainer");
+        formContainer.innerHTML = '<div class="loading-circle"></div>';
+
+        setTimeout(() => {
+          showSignedInState(username);
+        }, 2000);
+      }
+
+      function showSignedInState(username) {
+        const formContainer = document.getElementById("formContainer");
+        formContainer.innerHTML = `<img src="./assets/icons/success.svg" alt="Success Image">
+            <h1>Great! <br> you are signed in, <br> ${username}</h1>`;
+      }
+
+      function turnRed(id) {
+        document.getElementById(id + "Label").style.color = "red";
+        document.getElementById(id + "Wrapper").style.borderBottom = "1px solid red";
+      }
+
+      function resetErrors() {
+        document.getElementById("emailError").textContent = "";
+        document.getElementById("usernameError").textContent = "";
+        document.getElementById("passwordError").textContent = "";
+        document.getElementById("passwordConfirmError").textContent = "";
+        document.getElementById("emailLabel").style.color = "black";
+        document.getElementById("userLabel").style.color = "black";
+        document.getElementById("passwordLabel").style.color = "black";
+        document.getElementById("confirmLabel").style.color = "black";
+        document.getElementById("emailWrapper").style.borderBottom =
+          "1px solid #5A5F70";
+        document.getElementById("userWrapper").style.borderBottom =
+          "1px solid #5A5F70";
+        document.getElementById("passwordWrapper").style.borderBottom =
+          "1px solid #5A5F70";
+        document.getElementById("confirmWrapper").style.borderBottom =
+          "1px solid #5A5F70";
+      }
+    </script>
+  </body>
 </html>

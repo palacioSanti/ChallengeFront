@@ -25,7 +25,7 @@ header p {
     align-items: center;
     padding-top: 20px;
     padding-bottom: 25%;
-    background-color: var(--primary-color);
+    background-color: #FEF2F2;
     flex-direction: column;
 }
 
@@ -79,7 +79,8 @@ form {
     align-items: center;
     width: 100%;
     border-bottom: 1px solid #5A5F70;
-    position: relative; /* Add this to position the eye icon */
+    position: relative; 
+    background-color: var(--primary-color);
 }
 
 .link {
@@ -90,7 +91,8 @@ form {
 input {
     border: none;
     outline: none;
-    flex-grow: 1; /* Allow input to take up available space */
+    flex-grow: 1; 
+    background-color: var(--primary-color);
 }
 
 .eyeImage {
@@ -99,12 +101,6 @@ input {
     cursor: pointer;
 }
 
-.input-wrapper-email {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid var(--complimentary-red);
-}
 
 .input-wrapper img {
     padding-right: 10px;
@@ -123,7 +119,10 @@ div {
 }
 
 label {
-    font-weight: 600;
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
 }
 
 button {
@@ -137,6 +136,25 @@ button {
     align-self: center;
 }
 
+.error-message {
+    color: var(--complimentary-red);
+    font-size: 1.2rem;
+    padding-top: 5px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-circle {
+    border: 4px solid #f3f3f3; 
+    border-top: 4px solid var(--complimentary-red); 
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    align-self: center;
+}
 @media (min-width: 768px) {
     .main-section {
         flex-direction: row;
