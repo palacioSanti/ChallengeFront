@@ -141,7 +141,7 @@ button {
     padding: 15px 20px;
     border-radius: 20px;
     align-self: center;
-    box-shadow: #5A5F70;
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 .error-message {
