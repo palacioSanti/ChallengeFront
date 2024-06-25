@@ -1,6 +1,12 @@
 :root {
     /* Colors */
     --primary-color: #1C202E;
+    --secondary-color: #ABAEB7;
+    --white: #fff;
+    --off-white: #f9f9f9;
+    --dif-white: #f1f1f1;
+    --dark-gray: #333;
+    --gray: #757A88;
 }
 
 * {
@@ -16,16 +22,18 @@ html {
 
 header {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    gap:2rem
+    gap: 2rem
 }
+
 .filters {
     display: flex;
     flex-direction: row;
     gap: 1rem;
 }
+
 .title {
     padding: 0 2rem 0 2rem ;
 }
@@ -35,17 +43,18 @@ header {
     display: flex;
     align-items: center;
 }
+
 .search-container ::placeholder {
     font-family: "Manrope", sans-serif;
     font-weight: 500;
     font-size: 1.6rem;
-    color: #ABAEB7;
+    color: var(--secondary-color);
 }
 
 #searchInput {
     padding: 1.2rem 1.6rem 1.2rem 1.6rem;
     font-size: 1.6rem;
-    border-color: #ABAEB7;
+    border-color: var(--secondary-color);
     border-radius: 5px;
 }
 
@@ -56,7 +65,6 @@ header {
     height: 1.5rem;
 }
 
-
 .dropdown {
     position: relative;
     display: inline-block;
@@ -65,16 +73,16 @@ header {
 .dropbtn {
     padding: 1.2rem 1.6rem 1.2rem 1.6rem;
     font-size: 1.6rem;
-    border: 1px solid #ABAEB7;
+    border: 1px solid var(--secondary-color);
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: var(--white);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-family: "Manrope", sans-serif;
     font-weight: 500;
-    color: #ABAEB7;
+    color: var(--secondary-color);
 }
 
 .filter-icon {
@@ -86,7 +94,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: var(--off-white);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -107,7 +115,7 @@ header {
 }
 
 .dropdown-content button:hover {
-    background-color: #f1f1f1;
+    background-color: var(--dif-white);
 }
 
 .dropdown:hover .dropdown-content {
@@ -139,7 +147,7 @@ header {
 }
 
 .card {
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 1rem;
     overflow: hidden;
     width: calc(33.333% - 2rem);
@@ -183,7 +191,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    color: #fff;
+    color: var(--white);
     bottom: 1rem;
     width: 80%;
     align-self: center;
@@ -193,12 +201,12 @@ header {
     font-family: "Manrope", sans-serif;
     font-weight: 400;
     font-size: 1.6rem;
-    color: #757A88;
+    color: var(--gray);
 }
 
 .price {
     font-size: 1.2rem;
-    color: #333;
+    color: var(--dark-gray);
 }
 
 .card img .logo {
@@ -219,11 +227,13 @@ header {
         flex-direction: column;
         gap: 1rem;
     }
+
     .filters {
         display: flex;
         flex-direction: row;
         gap: 1rem;
     }
+    
     html {
         font-size: 50%; 
     }

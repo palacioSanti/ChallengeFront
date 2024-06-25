@@ -45,7 +45,6 @@
             </div>
         </section>
     </main>
-    <footer></footer>
 
     <script>
         const cardsContainer = document.getElementById('cardsContainer');
@@ -131,11 +130,14 @@
         function sortProducts(products, sort) {
             if (sort === 'priceAsc') {
                 return [...products].sort((a, b) => a.price - b.price);
-            } else if (sort === 'priceDesc') {
+            } 
+            if (sort === 'priceDesc') {
                 return [...products].sort((a, b) => b.price - a.price);
-            } else if (sort === 'nameAsc') {
+            } 
+            if (sort === 'nameAsc') {
                 return [...products].sort((a, b) => a.title.localeCompare(b.title));
-            } else if (sort === 'nameDesc') {
+            } 
+            if (sort === 'nameDesc') {
                 return [...products].sort((a, b) => b.title.localeCompare(a.title));
             }
             return products;

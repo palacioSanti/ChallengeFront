@@ -80,9 +80,9 @@
               </div>
 
               <div class="input-group">
-                <label for="passwordConfirm" id="confirmLabel"
-                  >Confirm Password</label
-                >
+                <label for="passwordConfirm" id="confirmLabel">
+                  Confirm Password
+                </label>
                 <div class="input-wrapper" id="confirmWrapper">
                   <img src="./assets/icons/lock.svg" alt="lock" />
                   <input
@@ -112,11 +112,7 @@
       document.querySelectorAll(".eyeImage").forEach((eyeIcon) => {
         eyeIcon.addEventListener("click", function () {
           const passwordInput = this.previousElementSibling;
-          if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-          } else {
-            passwordInput.type = "password";
-          }
+          passwordInput.type = passwordInput.type === "password" ? "text" : "password";
         });
       });
 
@@ -139,14 +135,6 @@
         resetErrors();
 
         // Email validation
-        const emailRegex =
-          /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|lightit\.io)$/;
-        if (!emailRegex.test(email)) {
-          document.getElementById("emailError").textContent =
-            "Invalid email address. Only @gmail.com, @hotmail.com, and @lightit.io are allowed.";
-          turnRed("email");
-          isValid = false;
-        }
 
         // Username validation
         const usernameRegex = /^[a-z]+$/;
@@ -180,6 +168,18 @@
         }
       }
 
+      function validateEmail(email) {
+        const emailRegex =
+          /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|lightit\.io)$/;
+        if (!emailRegex.test(email)) {
+          document.getElementById("emailError").textContent =
+            "Invalid email address. Only @gmail.com, @hotmail.com, and @lightit.io are allowed.";
+          turnRed("email");
+          return false;
+        }
+        return true
+      }
+
       function showLoadingState(username) {
         const formContainer = document.getElementById("formContainer");
         formContainer.innerHTML = '<div class="loading-circle"></div>';
@@ -197,7 +197,8 @@
 
       function turnRed(id) {
         document.getElementById(id + "Label").style.color = "red";
-        document.getElementById(id + "Wrapper").style.borderBottom = "1px solid red";
+        document.getElementById(id + "Wrapper").style.borderBottom =
+          "1px solid red";
       }
 
       function resetErrors() {
