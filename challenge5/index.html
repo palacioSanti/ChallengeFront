@@ -16,10 +16,13 @@
             secondary_color: "#458FF6",
             top_gradient: "#5A98F2",
             bottom_gradient: "#67C3F3",
-            background: "#E5E9F666",
+            background: "#FAF9F6",
           },
           lineHeight: {
             12: "60px",
+          },
+          rotate: {
+            160: "160deg",
           },
           padding: {
             11.5: "46.5px",
@@ -61,7 +64,7 @@
       </div>
     </div>
   </header>
-  <main class="flex flex-col">
+  <main class="flex flex-col overflow-hidden">
     <section class="relative flex flex-col md:flex-row pl-9 pr-11.5 justify-center grow">
       <div class="flex flex-col pr-10 pb-9 gap-y-6 self-center max-w-md">
         <h1 class="pr-12 text-3xl font-bold">
@@ -71,7 +74,7 @@
           Trafalgar provides progressive, and affordable healthcare,
           accessible on mobile and online for everyone
         </p>
-        <button class="bg-secondary_color text-white rounded-full text-button px-10 w-button">
+        <button class="bg-secondary_color text-white rounded-full text-button px-10 w-button hover:opacity-80">
           Consult today
         </button>
       </div>
@@ -81,13 +84,15 @@
     </section>
 
     <section class="relative flex flex-col px-15 pt-20 self-center justify-center">
-      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute w-2/3 left-0 transform -rotate-160 -translate-x-1/3 md:translate-x-0">
-      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute w-2/3 right-0 transform -rotate-160 translate-x-1/3 md:hidden">
+      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute left-0 transform -rotate-160 ">
       
       <div class="flex flex-col md:w-2/3 gap-y-6 self-center relative z-10">
         <h2 class="text-3xl font-bold text-center">
           Our services
         </h2>
+        <div class="self-center hidden md:inline">
+          <img src="./assets/icons/Rectangle.svg" alt="Vector" />
+        </div>
         <p class="text-lg text-center font-light text-gray-400">
           We provide to you the best choices for you. Adjust it to your
           health needs and make sure your undergo treatment with our highly
@@ -97,8 +102,7 @@
       </div>
 
       <div class="flex flex-col flex-wrap justify-center md:flex-row px-7 pt-20 gap-y-5 md:gap-8 relative z-10">
-        <!-- Card 1 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame.svg" alt="frame" />
           </div>
@@ -111,8 +115,7 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame-2.svg" alt="frame" />
           </div>
@@ -125,8 +128,7 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame-3.svg" alt="frame" />
           </div>
@@ -139,8 +141,7 @@
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame-4.svg" alt="frame" />
           </div>
@@ -153,8 +154,7 @@
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame-5.svg" alt="frame" />
           </div>
@@ -167,8 +167,7 @@
           </div>
         </div>
 
-        <!-- Card 6 -->
-        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2">
+        <div class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl">
           <div class="self-center py-5">
             <img src="./assets/imgs/Frame-6.svg" alt="frame" />
           </div>
@@ -182,15 +181,14 @@
       </div>
 
       <div class="flex self-center pt-15">
-        <button class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color">
+        <button class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color hover:opacity-80">
           Learn more
         </button>
       </div>
     </section>
 
     <section class="relative flex flex-col md:w-3/4 pr-7 pl-5 py-20 self-center justify-center">
-      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute w-2/3 left-0 transform -rotate-160 -translate-x-1/3 md:translate-x-0">
-      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute w-2/3 right-0 transform -rotate-160 translate-x-1/3 md:hidden">
+      <img src="./assets/imgs/bgImg.svg" alt="Background Image" class="absolute right-0 transform -rotate-160 translate-x-2/3">
       
       <div class="flex flex-col pb-8 relative z-10">
         <h2 class="text-3xl font-bold text-center pb-7">
@@ -202,7 +200,7 @@
       </div>
 
       <div class="flex flex-col md:flex-row gap-y-9 md:gap-8 relative z-10">
-        <div class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white">
+        <div class="flex flex-col rounded-2xl overflow-hidden bg-white">
           <div class="w-full">
             <img src="./assets/imgs/image.svg" alt="Illustration" class="w-full" />
           </div>
@@ -213,13 +211,13 @@
             In this case, the role of the health laboratory is very important
             to do a disease detection...
           </p>
-          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8 hover:opacity-80">
             <a href="#" class="text-secondary_color text-lg font-medium pr-3">Read more</a>
             <img src="./assets/icons/arrow.svg" alt="Arrow" />
           </div>
         </div>
 
-        <div class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white">
+        <div class="flex flex-col rounded-2xl overflow-hidden bg-white">
           <div class="w-full">
             <img src="./assets/imgs/image2.svg" alt="Illustration" class="w-full" />
           </div>
@@ -230,13 +228,13 @@
             Herbal medicine is very widely used at this time because of its
             very good for your health...
           </p>
-          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8 hover:opacity-80">
             <a href="#" class="text-secondary_color text-lg font-medium pr-3">Read more</a>
             <img src="./assets/icons/arrow.svg" alt="Arrow" />
           </div>
         </div>
 
-        <div class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white">
+        <div class="flex flex-col rounded-2xl overflow-hidden bg-white">
           <div class="w-full">
             <img src="./assets/imgs/image3.svg" alt="Illustration" class="w-full" />
           </div>
@@ -247,7 +245,7 @@
             A healthy lifestyle should start from now and also for your skin
             health. There are some...
           </p>
-          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+          <div class="flex flex-row mt-auto pl-8 pr-12 pb-8 hover:opacity-80">
             <a href="#" class="text-secondary_color text-lg font-medium pr-3">Read more</a>
             <img src="./assets/icons/arrow.svg" alt="Arrow" />
           </div>
@@ -255,7 +253,7 @@
       </div>
 
       <div class="flex self-center justify-center pt-7 md:pt-12">
-        <button class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color self-center">
+        <button class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color self-center hover:opacity-80">
           View all
         </button>
       </div>
