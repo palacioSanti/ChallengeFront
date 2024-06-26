@@ -112,7 +112,8 @@
       document.querySelectorAll(".eyeImage").forEach((eyeIcon) => {
         eyeIcon.addEventListener("click", function () {
           const passwordInput = this.previousElementSibling;
-          passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+          passwordInput.type =
+            passwordInput.type === "password" ? "text" : "password";
         });
       });
 
@@ -134,34 +135,15 @@
 
         resetErrors();
 
-        // Email validation
+        isValid = validateEmail(email) ? isValid : false;
 
-        // Username validation
-        const usernameRegex = /^[a-z]+$/;
-        if (!usernameRegex.test(username)) {
-          document.getElementById("usernameError").textContent =
-            "Invalid username. Only lowercase letters are allowed, without spaces and special characters.";
-          turnRed("user");
-          isValid = false;
-        }
+        isValid = validateUsername(username) ? isValid : false;
 
-        // Password validation
-        const passwordRegex =
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if (!passwordRegex.test(password)) {
-          document.getElementById("passwordError").textContent =
-            "Password must be at least 8 characters long and include uppercase, lowercase, and special characters.";
-          turnRed("password");
-          isValid = false;
-        }
+        isValid = validatePassword(password) ? isValid : false;
 
-        // Confirm password validation
-        if (password !== passwordConfirm) {
-          document.getElementById("passwordConfirmError").textContent =
-            "Passwords do not match.";
-          turnRed("confirm");
-          isValid = false;
-        }
+        isValid = validatePasswordConfirm(password, passwordConfirm)
+          ? isValid
+          : false;
 
         if (isValid) {
           showLoadingState(username);
@@ -177,7 +159,40 @@
           turnRed("email");
           return false;
         }
-        return true
+        return true;
+      }
+
+      function validateUsername(username) {
+        const usernameRegex = /^[a-z]+$/;
+        if (!usernameRegex.test(username)) {
+          document.getElementById("usernameError").textContent =
+            "Invalid username. Only lowercase letters are allowed, without spaces and special characters.";
+          turnRed("user");
+          return false;
+        }
+        return true;
+      }
+
+      function validatePassword(password) {
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(password)) {
+          document.getElementById("passwordError").textContent =
+            "Password must be at least 8 characters long and include uppercase, lowercase, and special characters.";
+          turnRed("password");
+          return false;
+        }
+        return true;
+      }
+
+      function validatePasswordConfirm(password, passwordConfirm) {
+        if (password !== passwordConfirm) {
+          document.getElementById("passwordConfirmError").textContent =
+            "Passwords do not match.";
+          turnRed("confirm");
+          return false;
+        }
+        return true;
       }
 
       function showLoadingState(username) {

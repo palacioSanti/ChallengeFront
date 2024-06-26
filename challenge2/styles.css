@@ -2,6 +2,7 @@
     /* Colors */
     --primary-color: #FCFCFC;
     --complimentary-red: #EF4444;
+    --hover-red: #D62828;
 }
 
 * {
@@ -142,6 +143,11 @@ button {
     border-radius: 20px;
     align-self: center;
     box-shadow: 0 4px 2px -2px gray;
+}
+
+button:hover {
+    background-color: var(--hover-red);
+    cursor: pointer;
 }
 
 .error-message {
