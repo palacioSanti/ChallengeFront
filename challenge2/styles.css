@@ -3,6 +3,9 @@
     --primary-color: #FCFCFC;
     --complimentary-red: #EF4444;
     --hover-red: #D62828;
+    --background-color: #FEF2F2;
+    --dark-gray: #5A5F70;
+    --off-white: #F3F3F3;
 }
 
 * {
@@ -23,15 +26,11 @@ html {
     font-family: "Ubuntu", sans-serif;
 }
 
-header p {
-    font-size: 1.8rem;
-}
-
 .main-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FEF2F2;
+    background-color: var(--background-color);
     flex-direction: column;
     height: 100%;
     overflow: hidden;
@@ -52,15 +51,11 @@ h1 {
     font-family: "Manrope", sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
-    padding-bottom: 10px;
+    padding-bottom: 1rem;
 }
 
 .title a {
     padding-bottom: 2rem;
-}
-
-.info {
-    display: flex;
 }
 
 form {
@@ -86,7 +81,7 @@ form {
     display: flex;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid #5A5F70;
+    border-bottom: 1px solid var(--dark-gray);
     position: relative; 
     background-color: var(--primary-color);
 }
@@ -103,7 +98,7 @@ input {
     background-color: var(--primary-color);
 }
 
-.eyeImage {
+.eye-image {
     position: absolute;
     right: 0;
     cursor: pointer;
@@ -161,7 +156,7 @@ button:hover {
 }
 
 .loading-circle {
-    border: 4px solid #f3f3f3; 
+    border: 4px solid var(--off-white); 
     border-top: 4px solid var(--complimentary-red); 
     border-radius: 50%;
     width: 80px;

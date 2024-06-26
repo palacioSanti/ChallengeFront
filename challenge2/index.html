@@ -22,11 +22,10 @@
         <div class="form-container" id="formContainer">
           <div class="title">
             <h1>Sign Up</h1>
-            <p>If you already have an account register</p>
+            <p>If you already have an account</p>
             <p>You can <a class="link">Login here!</a></p>
           </div>
 
-          <div class="info">
             <form id="signupForm">
               <div class="input-group">
                 <label for="email" id="emailLabel">Email</label>
@@ -73,7 +72,7 @@
                   <img
                     src="./assets/icons/eye.svg"
                     alt="eye"
-                    class="eyeImage"
+                    class="eye-image"
                   />
                 </div>
                 <span class="error-message" id="passwordError"></span>
@@ -95,7 +94,7 @@
                   <img
                     src="./assets/icons/eye.svg"
                     alt="eye"
-                    class="eyeImage"
+                    class="eye-image"
                   />
                 </div>
                 <span class="error-message" id="passwordConfirmError"></span>
@@ -103,13 +102,12 @@
 
               <button type="submit">Register</button>
             </form>
-          </div>
         </div>
       </section>
     </main>
 
     <script>
-      document.querySelectorAll(".eyeImage").forEach((eyeIcon) => {
+      document.querySelectorAll(".eye-image").forEach((eyeIcon) => {
         eyeIcon.addEventListener("click", function () {
           const passwordInput = this.previousElementSibling;
           passwordInput.type =
