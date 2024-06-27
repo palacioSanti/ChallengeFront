@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&family=Manrope:wght@400;500&family=Mulish:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary_color: "#FFFFFF",
+              secondary_color: "#458FF6",
+              top_gradient: "#5A98F2",
+              bottom_gradient: "#67C3F3",
+              background: "#E5E9F666",
+            },
+            lineHeight: {
+              12: "60px",
+            },
+            padding: {
+              11.5: "46.5px",
+              15: "60px",
+            },
+            fontFamily: {
+              ubuntu: ['Ubuntu', 'sans-serif'],
+              manrope: ['Manrope', 'sans-serif'],
+              mulish: ['Mulish', 'sans-serif'],
+            },
+            width: {
+              65: "259px",
+              button: "199px",
+            },
+            fontSize: {
+              button: ["18px", "60px"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-background z-0">
+    <header class="flex flex-row px-8 pt-2 pb-15 justify-between">
+        <div class="flex flex-row">
+            <img src="./assets/icons/logo.svg" alt="Logo" />
+        </div>
+        <div>
+            <div class="hidden md:flex mt-2">
+                <ul class="flex flex-row gap-x-5 pl-10">
+                <li class="font-mulish font-bold font-medium">Home</li>
+                <li class="text-gray-400 font-mulish font-normal font-medium">Find a doctor</li>
+                <li class="text-gray-400 font-mulish font-normal font-medium">Apps</li>
+                <li class="text-gray-400 font-mulish font-normal font-medium">Testimonials</li>
+                <li class="text-gray-400 font-mulish font-normal font-medium">About us</li>
+                </ul>
+            </div>
+            <div class="flex md:hidden">
+                <img src="./assets/icons/List.svg" alt="Menu" />
+            </div>
+        </div>
+    </header>
+    <main class="flex flex-col">
+      <section class="flex flex-col md:flex-row pl-9 pr-11.5 justify-center grow">
+        <div class="flex flex-col pr-10 pb-9 gap-y-6 self-center max-w-md">
+          <h1 class="pr-12 text-3xl font-mulish font-bold">
+            Virtual healthcare for you
+          </h1>
+          <p class="text-lg font-mulish font-">
+            Trafalgar provides progressive, and affordable healthcare,
+            accessible on mobile and online for everyone
+          </p>
+          <button
+            class="bg-secondary_color text-white rounded-full text-button px-10 w-button"
+          >
+            Consult today
+          </button>
+        </div>
+        <div class="flex flex-auto md:w-2/3 max-w-xl">
+          <img src="./assets/imgs/imgSection1.svg" alt="Illustration" class="flex flex-auto md:w-2/3"/>
+        </div>
+      </section>
+
+      <section class="flex flex-col px-15 pt-20 self-center justify-center">
+        <div class="flex flex-col md:w-2/3 gap-y-6 self-center">
+          <h2 class="text-3xl font-ubuntu font-medium text-center">
+            Our services
+          </h2>
+          <p class="text-lg text-center">
+            We provide to you the best choices for you. Adjust it to your
+            health needs and make sure your undergo treatment with our highly
+            qualified doctors you can consult with us which type of service is
+            suitable for your health
+          </p>
+        </div>
+
+        <div class="flex flex-col flex-wrap justify-center md:flex-row px-7 pt-20 gap-y-5 md:gap-8">
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Search doctor</h3>
+              <p class="text-lg font-manrope">
+                Choose your doctor from thousands of specialist, general, and
+                trusted hospitals
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame-2.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Online pharmacy</h3>
+              <p class="text-lg font-manrope">
+                Buy your medicines with our mobile application with a simple
+                delivery system
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame-3.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Consultation</h3>
+              <p class="text-lg font-manrope">
+                Free consultation with our trusted doctors and get the best
+                recommendations
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame-4.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Details info</h3>
+              <p class="text-lg font-manrope">
+                Free consultation with our trusted doctors and get the best
+                recommendations
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame-5.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Emergency care</h3>
+              <p class="text-lg font-manrope">
+                You can get 24/7 urgent care for yourself or your children and
+                your lovely family
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col bg-primary_color md:w-1/4 px-8 rounded-2xl border-solid border-2"
+          >
+            <div class="self-center py-5">
+              <img src="./assets/imgs/Frame-6.svg" alt="frame" />
+            </div>
+            <div class="flex flex-col gap-y-3 self-center pb-2">
+              <h3 class="text-2xl font-ubuntu font-medium">Tracking</h3>
+              <p class="text-lg font-manrope">
+                Track and save your medical history and health data
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex self-center pt-15">
+          <button
+            class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color"
+          >
+            Learn more
+          </button>
+        </div>
+      </section>
+
+      <section class="flex flex-col md:w-3/4 pr-7 pl-5 py-20 self-center justify-center">
+        <div class="flex flex-col pb-8">
+          <h2 class="text-3xl font-ubuntu font-medium text-center pb-7">
+            Check out our latest article
+          </h2>
+          <div class="self-center">
+            <img src="./assets/icons/Rectangle.svg" alt="Vector" />
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-y-9 md:gap-8">
+          <div
+            class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white"
+          >
+            <div class="w-full">
+              <img
+                src="./assets/imgs/image.svg"
+                alt="Illustration"
+                class="w-full"
+              />
+            </div>
+            <h3 class="text-2xl font-mulish font-medium pt-6 pb-3 pl-8 pr-16">
+              Disease detection, check up in the laboratory
+            </h3>
+            <p class="text-lg pb-6 pl-8 pr-12 text-gray-500">
+              In this case, the role of the health laboratory is very important
+              to do a disease detection...
+            </p>
+            <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+              <a href="#" class="text-secondary_color text-lg font-medium pr-3"
+                >Read more</a
+              >
+              <img src="./assets/icons/arrow.svg" alt="Arrow" />
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white"
+          >
+            <div class="w-full">
+              <img
+                src="./assets/imgs/image2.svg"
+                alt="Illustration"
+                class="w-full"
+              />
+            </div>
+            <h3 class="text-2xl font-mulish font-medium pt-6 pb-3 pl-8 pr-16">
+              Herbal medicines that are safe for consumption
+            </h3>
+            <p class="text-lg pb-6 pl-8 pr-12 text-gray-500">
+              Herbal medicine is very widely used at this time because of its
+              very good for your health...
+            </p>
+            <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+              <a href="#" class="text-secondary_color text-lg font-medium pr-3"
+                >Read more</a
+              >
+              <img src="./assets/icons/arrow.svg" alt="Arrow" />
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col rounded-2xl overflow-hidden border-solid border-2 bg-white"
+          >
+            <div class="w-full">
+              <img
+                src="./assets/imgs/image3.svg"
+                alt="Illustration"
+                class="w-full"
+              />
+            </div>
+            <h3 class="text-2xl font-mulish font-medium pt-6 pb-3 pl-8 pr-16">
+              Natural care for healthy facial skin
+            </h3>
+            <p class="text-lg pb-6 pl-8 pr-12 text-gray-500">
+              A healthy lifestyle should start from now and also for your skin
+              health. There are some...
+            </p>
+            <div class="flex flex-row mt-auto pl-8 pr-12 pb-8">
+              <a href="#" class="text-secondary_color text-lg font-medium pr-3"
+                >Read more</a
+              >
+              <img src="./assets/icons/arrow.svg" alt="Arrow" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex self-center justify-center pt-7 md:pt-12">
+          <button
+            class="bg-primary_color text-secondary_color rounded-full text-button px-10 w-button border-solid border-2 border-secondary_color self-center"
+          >
+            View all
+          </button>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-gradient-to-t from-top_gradient to-bottom_gradient">
+      <div class="flex flex-col md:flex-row pr-14 pl-20 py-10">
+        <div class="md:w-2/5">
+          <img src="./assets/icons/logo.svg" alt="Logo" />
+
+          <p class="text-white pt-5 pb-4 font-manrope">
+            Trafalgar provides progressive, and affordable healthcare,
+            accessible on mobile and online for everyone
+          </p>
+
+          <p class="text-white font-manrope">
+            ©Trafalgar PTY LTD 2020. All rights reserved
+          </p>
+        </div>
+        <div class="pt-12 pr-40 text-white">
+            <h3>Company</h3>
+
+            <ul class="text-white pt-5 font-manrope">
+                <li>About</li>
+                <li>Testimonials</li>
+                <li>Find a doctor</li>
+                <li>Apps</li>
+            </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
