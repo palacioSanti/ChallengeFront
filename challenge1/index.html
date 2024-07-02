@@ -12,74 +12,174 @@
 </head>
 
 <body>
-    <header></header>
+    <header>
+        <div class="title">
+            <h1>Find what you need</h1>
+        </div>
+        <div class="filters">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search">
+                <img src="./assets/icons/Magnifer.svg" alt="magnifier" class="magnifier-icon">
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Sort by
+                    <img src="./assets/icons/ArrowDown.svg" alt="filter" class="filter-icon">
+                </button>
+                <div class="dropdown-content">
+                    <button id="sortPriceAsc">Price ↑</button>
+                    <button id="sortPriceDesc">Price ↓</button>
+                    <button id="sortNameAsc">Name A-Z</button>
+                    <button id="sortNameDesc">Name Z-A</button>
+                    <button id="filterFavorites">Favorites</button>
+                </div>
+                
+            </div>
+        </div>
+        
+    </header>
     <main>
         <section class="cards-section">
-            <h1>Find what you need</h1>
-            <div class="cards-container">
-                <div class="card">
-                    <img src="./assets/imgs/Polo.svg" alt="Imagen 1" class="imgPrincipal">
-                    <h2>Polo Ralph Lauren</h2>
-                    <p>Impeccably tailored in Italy from lightweight navy wool.</p>
-                    <div class="card-footer">
-                        <span class="price">€300</span>
-                        <img src="./assets/icons/Heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./assets/imgs/Bolso.svg" alt="Imagen 1">
-                    <h2>Tom Ford</h2>
-                    <p>Immaculate tailoring is TOM FORD's forte.</p>
-                    <div class="card-footer">
-                        <span class="price">€879</span>
-                        <img src="./assets/icons/heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./assets/imgs/Remera.svg" alt="Imagen 1">
-                    <h2>Wooyoungmi</h2>
-                    <p>Dark-grey slub wool, pintucked notch lapels.</p>
-                    <div class="card-footer">
-                        <span class="price">€555</span>
-                        <img src="./assets/icons/Heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./assets/imgs/Camisa.svg" alt="Imagen 1">
-                    <h2>Thom Sweeney</h2>
-                    <p>It's made from lightweight grey wool woven.</p>
-                    <div class="card-footer">
-                        <span class="price">€680</span>
-                        <img src="./assets/icons/heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./assets/imgs/Shorts.svg" alt="Imagen 1">
-                    <h2>Kingsman</h2>
-                    <p>Crafted from khaki cotton and fully canvassed.</p>
-                    <div class="card-footer">
-                        <span class="price">€725</span>
-                        <img src="./assets/icons/Heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="./assets/imgs/Pants.svg" alt="Imagen 1">
-                    <h2>Boglioli</h2>
-                    <p>Masterfully crafted in Northern Italy.</p>
-                    <div class="card-footer">
-                        <span class="price">€699</span>
-                        <img src="./assets/icons/heart.svg" alt="heart" class="logo">
-                    </div>
-                </div>
-            </div>          
+            <div class="cards-container" id="cardsContainer">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
         </section>
     </main>
-    <footer></footer>
+
+    <script>
+        const cardsContainer = document.getElementById('cardsContainer');
+        const searchInput = document.getElementById('searchInput');
+        let products = [];
+        let favorites = new Set(JSON.parse(localStorage.getItem('favorites')) || []);
+
+        async function fetchProducts() {
+            try {
+                const response = await fetch('https://dummyjson.com/products');
+                const data = await response.json();
+                products = data.products;
+                applyFiltersFromURL();
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        function renderProducts(products) {
+            cardsContainer.innerHTML = '';
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.innerHTML = `
+                    <img src="${product.thumbnail}" alt="${product.title}" class="imgPrincipal">
+                    <h2>${product.title}</h2>
+                    <p>${product.description}</p>
+                    <div class="card-footer">
+                        <span class="price">€${product.price}</span>
+                        <img src="./assets/icons/Heart.svg" alt="heart" class="logo" data-id="${product.id}" ${favorites.has(product.id) ? '' : 'style="filter: invert(50%)"'}>
+                    </div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+
+            document.querySelectorAll('.logo').forEach(icon => {
+                icon.addEventListener('click', toggleFavorite);
+            });
+        }
+
+        function toggleFavorite(event) {
+            const productId = Number(event.target.dataset.id);
+            if (favorites.has(productId)) {
+                favorites.delete(productId);
+                event.target.style.filter = 'invert(50%)';
+            } else {
+                favorites.add(productId);
+                event.target.style.filter = '';
+            }
+            localStorage.setItem('favorites', JSON.stringify([...favorites]));
+        }
+
+        function updateURLParams(params) {
+            const url = new URL(window.location);
+            Object.keys(params).forEach(key => url.searchParams.set(key, params[key]));
+            window.history.pushState({}, '', url);
+        }
+
+        function applyFiltersFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search') || '';
+            const sort = urlParams.get('sort') || '';
+            const filterFavorites = urlParams.get('favorites') === 'true';
+
+            searchInput.value = searchTerm;
+            let filteredProducts = products;
+
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(product => product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+            }
+
+            if (sort) {
+                filteredProducts = sortProducts(filteredProducts, sort);
+            }
+
+            if (filterFavorites) {
+                filteredProducts = filteredProducts.filter(product => favorites.has(product.id));
+            }
+
+            renderProducts(filteredProducts);
+        }
+
+        function sortProducts(products, sort) {
+            if (sort === 'priceAsc') {
+                return [...products].sort((a, b) => a.price - b.price);
+            } 
+            if (sort === 'priceDesc') {
+                return [...products].sort((a, b) => b.price - a.price);
+            } 
+            if (sort === 'nameAsc') {
+                return [...products].sort((a, b) => a.title.localeCompare(b.title));
+            } 
+            if (sort === 'nameDesc') {
+                return [...products].sort((a, b) => b.title.localeCompare(a.title));
+            }
+            return products;
+        }
+
+        searchInput.addEventListener('input', event => {
+            const searchTerm = event.target.value;
+            updateURLParams({ search: searchTerm });
+            applyFiltersFromURL();
+        });
+
+        document.getElementById('sortPriceAsc').addEventListener('click', () => {
+            updateURLParams({ sort: 'priceAsc' });
+            applyFiltersFromURL();
+        });
+
+        document.getElementById('sortPriceDesc').addEventListener('click', () => {
+            updateURLParams({ sort: 'priceDesc' });
+            applyFiltersFromURL();
+        });
+
+        document.getElementById('sortNameAsc').addEventListener('click', () => {
+            updateURLParams({ sort: 'nameAsc' });
+            applyFiltersFromURL();
+        });
+
+        document.getElementById('sortNameDesc').addEventListener('click', () => {
+            updateURLParams({ sort: 'nameDesc' });
+            applyFiltersFromURL();
+        });
+
+        document.getElementById('filterFavorites').addEventListener('click', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isFavorites = urlParams.get('favorites') === 'true';
+            updateURLParams({ favorites: !isFavorites });
+            applyFiltersFromURL();
+        });
+
+        window.addEventListener('popstate', applyFiltersFromURL);
+
+        fetchProducts();
+    </script>
 </body>
 
 </html>
