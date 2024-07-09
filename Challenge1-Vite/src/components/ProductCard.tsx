@@ -1,18 +1,14 @@
 import React from 'react';
+import Product from '../models/Product';
+import { twMerge } from 'tailwind-merge';
 
 interface CardProps {
-  product: {
-    id: number;
-    thumbnail: string;
-    title: string;
-    description: string;
-    price: number;
-  };
+  product: Product;
   favorites: Set<number>;
   toggleFavorite: (id: number) => void;
 }
 
-const Card: React.FC<CardProps> = ({ product, favorites, toggleFavorite }) => {
+const ProductCard: React.FC<CardProps> = ({ product, favorites, toggleFavorite }) => {
   return (
     <div className="bg-white rounded-lg overflow-hidden flex flex-col p-4 shadow hover:shadow-lg transition transform hover:scale-101">
       <img src={product.thumbnail} alt={product.title} className="w-full h-auto mb-4" />
@@ -23,7 +19,7 @@ const Card: React.FC<CardProps> = ({ product, favorites, toggleFavorite }) => {
         <img
           src="/src/assets/icons/Heart.svg"
           alt="heart"
-          className={`w-6 h-6 cursor-pointer ${favorites.has(product.id) ? '' : 'opacity-50'}`}
+          className={twMerge("w-6 h-6 cursor-pointer opacity-30",  favorites.has(product.id) && "opacity-100")}
           onClick={() => toggleFavorite(product.id)}
         />
       </div>
@@ -31,4 +27,4 @@ const Card: React.FC<CardProps> = ({ product, favorites, toggleFavorite }) => {
   );
 };
 
-export default Card;
+export default ProductCard;

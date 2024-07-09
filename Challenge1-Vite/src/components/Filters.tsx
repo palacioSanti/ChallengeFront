@@ -9,7 +9,7 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOption, setFilterFavorites }) => {
   const [isFavorites, setIsFavorites] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -17,11 +17,11 @@ const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOpt
 
   const handleSortChange = (sortOption: string) => {
     setSortOption(sortOption);
-    setDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
 
   const handleFavoritesToggle = () => {
-    setIsFavorites(!isFavorites);
+    setIsFavorites((prev) => !prev);
     setFilterFavorites(!isFavorites);
   };
 
@@ -44,7 +44,7 @@ const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOpt
       <div className="relative inline-block self-center">
         <button
           className="flex items-center justify-between p-2 text-lg border border-gray-300 rounded bg-white"
-          onClick={() => setDropdownOpen(!dropdownOpen)}
+          onClick={() => setIsDropdownOpen((prev) => !prev)}
         >
           Sort by
           <img
@@ -53,7 +53,7 @@ const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOpt
             className="ml-4 w-8 h-8"
           />
         </button>
-        {dropdownOpen && (
+        {isDropdownOpen && (
           <div className="absolute bg-white shadow-lg w-full mt-1 z-10">
             <button onClick={() => handleSortChange('priceAsc')} className="w-full text-left p-2 hover:bg-gray-200">Price ↑</button>
             <button onClick={() => handleSortChange('priceDesc')} className="w-full text-left p-2 hover:bg-gray-200">Price ↓</button>
