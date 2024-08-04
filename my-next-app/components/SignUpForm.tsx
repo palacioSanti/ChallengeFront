@@ -1,87 +1,43 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
+import { useState } from 'react';
+
+const schema = z.object({
+  email: z.string().email({ message: "Invalid email address. Only @gmail.com, @hotmail.com, and @lightit.io are allowed." })
+    .refine((val) => /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|lightit\.io)$/.test(val), {
+      message: "Only @gmail.com, @hotmail.com, and @lightit.io are allowed.",
+    }),
+  username: z.string().regex(/^[a-z]+$/, { message: "Invalid username. Only lowercase letters are allowed." }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long." })
+    .regex(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/, { message: "Password must include uppercase, lowercase, and special characters." }),
+  passwordConfirm: z.string().min(1, { message: "Please confirm your password." })
+}).refine(data => data.password === data.passwordConfirm, {
+  message: "Passwords do not match.",
+  path: ["passwordConfirm"],
+});
 
 const SignUpForm = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [errors, setErrors] = useState({
-    email: '',
-    username: '',
-    password: '',
-    passwordConfirm: '',
-  });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|lightit\.io)$/;
-    return emailRegex.test(email);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
-  const validateUsername = (username: string) => {
-    const usernameRegex = /^[a-z]+$/;
-    return usernameRegex.test(username);
-  };
-
-  const validatePassword = (password: string) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    setErrors({
-      email: '',
-      username: '',
-      password: '',
-      passwordConfirm: '',
-    });
-
-    let isValid = true;
-
-    if (!validateEmail(email)) {
-      isValid = false;
-      setErrors((prev) => ({
-        ...prev,
-        email: 'Invalid email address. Only @gmail.com, @hotmail.com, and @lightit.io are allowed.',
-      }));
-    }
-
-    if (!validateUsername(username)) {
-      isValid = false;
-      setErrors((prev) => ({
-        ...prev,
-        username: 'Invalid username. Only lowercase letters are allowed, without spaces and special characters.',
-      }));
-    }
-
-    if (!validatePassword(password)) {
-      isValid = false;
-      setErrors((prev) => ({
-        ...prev,
-        password: 'Password must be at least 8 characters long and include uppercase, lowercase, and special characters.',
-      }));
-    }
-
-    if (password !== passwordConfirm) {
-      isValid = false;
-      setErrors((prev) => ({
-        ...prev,
-        passwordConfirm: 'Passwords do not match.',
-      }));
-    }
-
-    if (isValid) {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setSuccess(username);
-      }, 2000);
-    }
+  const onSubmit = (data: any) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(data.username);
+    }, 2000);
   };
 
   return (
@@ -94,7 +50,7 @@ const SignUpForm = () => {
         </p>
       </div>
       {!loading && !success && (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="input-group">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email
@@ -104,16 +60,12 @@ const SignUpForm = () => {
               <input
                 type="email"
                 id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.email ? 'text-red-900 placeholder-red-300' : ''
-                  }`}
+                {...register('email')}
+                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.email ? 'text-red-900 placeholder-red-300' : ''}`}
                 placeholder="Enter your email address"
-                required
               />
             </div>
-            {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email}</p>}
+            {errors.email && <p className="mt-2 text-sm text-red-600">{(errors.email as any).message}</p>}
           </div>
 
           <div className="input-group">
@@ -125,16 +77,12 @@ const SignUpForm = () => {
               <input
                 type="text"
                 id="username"
-                name="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.username ? 'text-red-900 placeholder-red-300' : ''
-                  }`}
+                {...register('username')}
+                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.username ? 'text-red-900 placeholder-red-300' : ''}`}
                 placeholder="Enter your User name"
-                required
               />
             </div>
-            {errors.username && <p className="mt-2 text-sm text-red-600">{errors.username}</p>}
+            {errors.username && <p className="mt-2 text-sm text-red-600">{(errors.username as any).message}</p>}
           </div>
 
           <div className="input-group">
@@ -146,13 +94,9 @@ const SignUpForm = () => {
               <input
                 type="password"
                 id="password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.password ? 'text-red-900 placeholder-red-300' : ''
-                  }`}
+                {...register('password')}
+                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.password ? 'text-red-900 placeholder-red-300' : ''}`}
                 placeholder="Enter your password"
-                required
               />
               <Image
                 src="/icons/eye.svg"
@@ -166,7 +110,7 @@ const SignUpForm = () => {
                 }}
               />
             </div>
-            {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password}</p>}
+            {errors.password && <p className="mt-2 text-sm text-red-600">{(errors.password as any).message}</p>}
           </div>
 
           <div className="input-group">
@@ -178,13 +122,9 @@ const SignUpForm = () => {
               <input
                 type="password"
                 id="passwordConfirm"
-                name="passwordConfirm"
-                value={passwordConfirm}
-                onChange={(e) => setPasswordConfirm(e.target.value)}
-                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.passwordConfirm ? 'text-red-900 placeholder-red-300' : ''
-                  }`}
+                {...register('passwordConfirm')}
+                className={`block w-full border-0 py-1.5 placeholder-gray-300 focus:ring-0 sm:text-sm ${errors.passwordConfirm ? 'text-red-900 placeholder-red-300' : ''}`}
                 placeholder="Confirm your password"
-                required
               />
               <Image
                 src="/icons/eye.svg"
@@ -198,7 +138,7 @@ const SignUpForm = () => {
                 }}
               />
             </div>
-            {errors.passwordConfirm && <p className="mt-2 text-sm text-red-600">{errors.passwordConfirm}</p>}
+            {errors.passwordConfirm && <p className="mt-2 text-sm text-red-600">{(errors.passwordConfirm as any).message}</p>}
           </div>
 
           <div>
