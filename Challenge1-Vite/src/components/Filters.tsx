@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface FiltersProps {
   searchTerm: string;
@@ -10,9 +10,20 @@ interface FiltersProps {
 const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOption, setFilterFavorites }) => {
   const [isFavorites, setIsFavorites] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setSearchTerm(debouncedSearchTerm);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [debouncedSearchTerm, setSearchTerm]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setDebouncedSearchTerm(e.target.value);
   };
 
   const handleSortChange = (sortOption: string) => {
@@ -32,7 +43,7 @@ const Filters: React.FC<FiltersProps> = ({ searchTerm, setSearchTerm, setSortOpt
           type="text"
           placeholder="Search"
           className="p-2 text-lg border border-gray-300 rounded"
-          value={searchTerm}
+          value={debouncedSearchTerm}
           onChange={handleSearchChange}
         />
         <img
