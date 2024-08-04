@@ -9,20 +9,27 @@ const useProductFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const response = await axios.get('https://dummyjson.com/products');
-        setProducts(response.data.products);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    }
     fetchProducts();
   }, []);
 
   useEffect(() => {
     applyFiltersAndSort();
-  }, [searchParams, products]);
+  }, [products, searchParams]);
+
+  useEffect(() => {
+    const searchTerm = searchParams.get('searchTerm') || '';
+    fetchProducts(searchTerm);
+  }, [searchParams.get('searchTerm')]);
+
+  const fetchProducts = async (searchTerm: string = '') => {
+    try {
+      const queryParams = searchTerm ? '/search?q=' + searchTerm : '';
+      const response = await axios.get(`https://dummyjson.com/products${queryParams}`);
+      setProducts(response.data.products);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   const getFavorites = (): Set<number> => {
     return new Set(JSON.parse(localStorage.getItem('favorites') || '[]'));
@@ -40,22 +47,15 @@ const useProductFilters = () => {
       favorites.add(id);
     }
     updateFavorites(favorites);
-    applyFiltersAndSort(); 
+    applyFiltersAndSort();
   };
 
   const applyFiltersAndSort = () => {
     let filtered = [...products];
     const favorites = getFavorites();
 
-    const searchTerm = searchParams.get('searchTerm') || '';
     const sortOption = searchParams.get('sortOption') || '';
     const filterFavorites = searchParams.get('filterFavorites') === 'true';
-
-    if (searchTerm) {
-      filtered = filtered.filter(product =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
 
     if (sortOption) {
       filtered = sortProducts(filtered, sortOption);
