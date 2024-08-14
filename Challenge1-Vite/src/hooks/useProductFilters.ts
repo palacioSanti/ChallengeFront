@@ -23,8 +23,12 @@ const useProductFilters = () => {
 
   const fetchProducts = async (searchTerm: string = '') => {
     try {
-      const queryParams = searchTerm ? '/search?q=' + searchTerm : '';
-      const response = await axios.get(`https://dummyjson.com/products${queryParams}`);
+      const url = new URL('https://dummyjson.com/products');
+      if (searchTerm) {
+        url.pathname += '/search';
+        url.searchParams.set('q', searchTerm);
+      }
+      const response = await axios.get(url.toString());
       setProducts(response.data.products);
     } catch (error) {
       console.error('Error fetching products:', error);
